@@ -127,7 +127,7 @@ public class Server implements Runnable{
 			System.out.println("Private message sent: " + input.substring(endPos + 1) + " to " + input.substring(startPos, endPos));
 		}
 		//exit request
-		else if(input.startsWith("EXIT ")) {
+		else if(input.startsWith("EXIT")) {
 			clients[findClient(ID)].send("EXIT");
 			for(int i = 0; i < clientCount; i++){
 				clients[i].send(clients[findClient(ID)].username + " has left the chat.");
