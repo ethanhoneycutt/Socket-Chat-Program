@@ -1,7 +1,12 @@
-import java.io.*;
-import java.net.*;
+package honeycutt.com;
 
-//Chat Client Class
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+//Chat client.Client Class
 public class Client implements Runnable{
 	//initialize variables
 	DataInputStream console = null;
@@ -87,7 +92,7 @@ public class Client implements Runnable{
 	public static void main(String args[]){
 		Client client = null;
 		if(args.length != 2){
-			System.out.println("Usage: java Client host port");
+			System.out.println("Usage: java client.Client host port");
 		}
 		else{
 			client = new Client(args[0], Integer.parseInt(args[1]));

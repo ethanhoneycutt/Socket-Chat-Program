@@ -1,7 +1,10 @@
-import java.io.*;
-import java.net.*;
+package honeycutt.com;
 
-//Server class
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+//server.Server class
 public class Server implements Runnable{
 	//initialize variables
 	Thread thread = null;
@@ -37,7 +40,7 @@ public class Server implements Runnable{
 	private void addThread(Socket socket){
 		//handle a client joining
 		if(clientCount < clients.length){
-			System.out.println("Client added: " + socket);
+			System.out.println("client.Client added: " + socket);
 			clients[clientCount] = new ServerProcess(this, socket);
 			try{
 				clients[clientCount].begin();
@@ -90,18 +93,19 @@ public class Server implements Runnable{
 
 		//username registration
 		if(input.startsWith("REG ")){
+			String username = input.substring(input.indexOf(" ") + 1);
 			boolean existing = false;
 			for(int i = 0; i < clientCount; i++){
 				if(clients[i].username != null){
-					if((clients[i].username).equals(input.substring(input.indexOf(" ") + 1))){
+					if((clients[i].username).equals(username)){
 						clients[findClient(ID)].send("Username already taken, try again.");
 						existing = true;
 					}
 				}
 			}
 			if(!existing){
-				clients[findClient(ID)].setUsername(input.substring(input.indexOf(" ") + 1));
-				System.out.println("Client registered with username " + input.substring(input.indexOf(" ") + 1));
+				clients[findClient(ID)].setUsername(username);
+				System.out.println("client.Client registered with username " + username);
 				for(int i = 0; i < clientCount; i++){
 					clients[i].send(clients[findClient(ID)].username + " has joined the chat.");
 				}
@@ -109,8 +113,9 @@ public class Server implements Runnable{
 		}
 		//regular message
 		else if(input.startsWith("MESG ")){
+			String message = input.substring(input.indexOf(" ") + 1);
 			for(int i = 0; i < clientCount; i++){
-				clients[i].send(clients[findClient(ID)].username + ": " + input.substring(input.indexOf(" ") + 1));
+				clients[i].send(clients[findClient(ID)].username + ": " + message);
 			}
 			System.out.println("Message sent");
 		}
@@ -153,7 +158,7 @@ public class Server implements Runnable{
 	public static void main(String args[]){
 		Server server = null;
 		if(args.length != 1){
-			System.out.println("Command: java Server port");
+			System.out.println("Command: java server.Server port");
 		}
 		else{
 			server = new Server(Integer.parseInt(args[0]));

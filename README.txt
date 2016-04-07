@@ -2,7 +2,7 @@ Ethan Honeycutt
 
 Chat Program
 
-The folder contains this readme and four files, Server.java, ServerProcess.java, Client.java, and ClientProcess.java.
+The folder contains this readme and four files, server.Server.java, server.ServerProcess.java, client.Client.java, and client.ClientProcess.java.
 
 Compile with
 
@@ -10,15 +10,15 @@ javac *.java
 
 start the server with
 
-java Server port
+java server.Server port
 	for example,
-java Server 8080
+java server.Server 8080
 
 then start up a few clients with
 
-java Client host port
+java client.Client host port
 	for example,
-java Client 0.0.0.0 8080
+java client.Client 0.0.0.0 8080
 
 For each of the clients, register a username by typing
 

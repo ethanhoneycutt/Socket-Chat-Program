@@ -1,5 +1,7 @@
+package honeycutt.com;
+
 import java.io.*;
-import java.net.*;
+import java.net.Socket;
 
 //Thread-based class for server
 public class ServerProcess extends Thread{
@@ -40,7 +42,7 @@ public class ServerProcess extends Thread{
 	}
 
 	public void run(){
-		System.out.println("Server Process " + ID + " running.");
+		System.out.println("server.Server Process " + ID + " running.");
 		while (true){
 			try{
 				server.control(ID, streamIn.readUTF());

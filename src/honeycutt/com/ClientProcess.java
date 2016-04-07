@@ -1,5 +1,8 @@
-import java.io.*;
-import java.net.*;
+package honeycutt.com;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 //Thread-based class allowing multiple clients
 public class ClientProcess extends Thread{
